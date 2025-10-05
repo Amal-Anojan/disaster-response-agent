@@ -1,5 +1,3 @@
-Here is a complete, well-explained, and easy-to-understand README.md for your project based on the provided format and details:
-
 ```markdown
 # Disaster Response Multi-Modal AI Agent
 
@@ -43,7 +41,9 @@ This modular system is built to be ready for real-world deployment, helping emer
 > After starting the project, open the dashboard in your browser:
 
 ```
-http://localhost:8501
+
+[http://localhost:8501](http://localhost:8501)
+
 ```
 
 (Include these files in your repo for judges:
@@ -84,31 +84,43 @@ http://localhost:8501
 Tested on Windows/macOS/Linux.
 
 ```
+
 # 1. Clone repository
+
 git clone <your-repository-link>
 cd disaster-response-agent
 
 # 2. Create Python environment
+
 conda create -n disaster-env python=3.9 -y
 conda activate disaster-env
 
 # 3. Install all dependencies
+
 pip install -r requirements.txt
 
 # 4. Set required environment variables (example)
+
 # Cerebras API key is required to analyze images
+
 # Replace your_key_here with your actual key
+
 # PowerShell (Windows)
+
 setx CEREBRAS_API_KEY "your_key_here"
 
 # bash (macOS/Linux)
+
 export CEREBRAS_API_KEY="your_key_here"
 
 # 5. Start the MCP backend gateway
+
 python -m uvicorn src.orchestrator.mcp_server:app --host 0.0.0.0 --port 8080 --reload
 
 # 6. In a new terminal, start the dashboard UI
+
 streamlit run src/ui/dashboard.py --server.address localhost --server.port 8501
+
 ```
 
 Open browser at: `http://localhost:8501`
@@ -120,32 +132,38 @@ Open browser at: `http://localhost:8501`
 ## JSON-only incident report (no image):
 
 ```
-curl -X POST "http://localhost:8080/api/v1/incident/report" \
-  -H "Content-Type: application/json" \
-  -d '{
-    "text_content": "Fire near highway exit",
-    "location": {"lat": 40.7128, "lng": -74.0060},
-    "source": "manual",
-    "priority_override": "HIGH"
-  }'
+
+curl -X POST "[http://localhost:8080/api/v1/incident/report](http://localhost:8080/api/v1/incident/report)" 
+-H "Content-Type: application/json" 
+-d '{
+"text_content": "Fire near highway exit",
+"location": {"lat": 40.7128, "lng": -74.0060},
+"source": "manual",
+"priority_override": "HIGH"
+}'
+
 ```
 
 ## Multipart form data with image:
 
 ```
-curl -X POST "http://localhost:8080/api/v1/incident/report" \
-  -F "text_content=Building collapse" \
-  -F "source=manual" \
-  -F "lat=40.7128" \
-  -F "lng=-74.0060" \
-  -F "priority_override=CRITICAL" \
-  -F "image=@/path/to/disaster_photo.jpg"
+
+curl -X POST "[http://localhost:8080/api/v1/incident/report](http://localhost:8080/api/v1/incident/report)" 
+-F "text_content=Building collapse" 
+-F "source=manual" 
+-F "lat=40.7128" 
+-F "lng=-74.0060" 
+-F "priority_override=CRITICAL" 
+-F "image=@/path/to/disaster_photo.jpg"
+
 ```
 
 ## Query incident status:
 
 ```
-curl "http://localhost:8080/api/v1/incident/status/INC_202510051230_abcd1234"
+
+curl "[http://localhost:8080/api/v1/incident/status/INC_202510051230_abcd1234](http://localhost:8080/api/v1/incident/status/INC_202510051230_abcd1234)"
+
 ```
 
 ---
