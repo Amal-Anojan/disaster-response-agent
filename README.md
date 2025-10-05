@@ -1,4 +1,4 @@
-```markdown
+
 # Disaster Response Multi-Modal AI Agent
 
 [![Project Status](https://img.shields.io/badge/status-beta-orange)](#) [![License](https://img.shields.io/badge/license-MIT-blue)](LICENSE) [![Python](https://img.shields.io/badge/python-3.9%2B-blue)](#)
@@ -29,7 +29,6 @@ This modular system is built to be ready for real-world deployment, helping emer
 4. [Quick start (run locally)](#quick-start-run-locally)  
 5. [API usage examples](#api-usage-examples)  
 6. [Troubleshooting & common errors](#troubleshooting--common-errors)  
-7. [For judges: evaluation & impact](#for-judges-evaluation--impact)  
 8. [For learners: how it works (high level)](#for-learners-how-it-works-high-level)  
 9. [Contributing & roadmap](#contributing--roadmap)  
 10. [License & acknowledgements](#license--acknowledgements)  
@@ -182,7 +181,7 @@ This error usually means the data format or required fields sent from the UI or 
 
 ---
 
-# For learners — how it works (high level)
+# for-learners-how-it-works-high-level
 
 - Users submit emergency reports (text + location + optional photo) through the dashboard.
 - The MCP Gateway API receives and stores reports, handling uploads safely.
