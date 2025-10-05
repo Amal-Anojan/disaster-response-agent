@@ -1,0 +1,56 @@
+# Core AI/ML
+cerebras-cloud-sdk==1.7.0          # Latest version supports Python 3.8+
+google-generativeai==0.8.3         # Use google-genai==0.4.0 instead for better 3.11 support 
+transformers==4.56.2               # Latest version supports Python 3.11
+torch==2.1.2                       # PyTorch 2.1+ fully supports Python 3.11
+torchvision==0.16.2                # Matches torch 2.1.2
+sentence-transformers==3.0.1       # Latest version with Python 3.11 support
+
+# Web Framework
+fastapi==0.115.0                   # Latest version with Python 3.11 support
+uvicorn[standard]==0.32.0          # Latest with Python 3.11 support
+streamlit==1.39.0                  # Latest version supports Python 3.11
+requests==2.32.3                   # Latest version
+
+# Docker & Container Management
+docker==7.1.0                      # Latest version supports Python 3.11
+# docker-compose==1.29.2           # Deprecated - use docker compose plugin instead
+
+# Database
+sqlalchemy==2.0.35                 # Latest with Python 3.11 support
+psycopg2-binary==2.9.9             # Latest version
+redis==5.2.0                       # Latest version
+
+# Data Processing
+pandas==2.2.3                      # Latest with Python 3.11 support
+numpy==1.26.4                      # Compatible with Python 3.11.13
+pillow==10.4.0                     # Latest version
+opencv-python==4.10.0.84           # Latest version supports Python 3.11
+
+# Visualization & UI
+folium==0.18.0                     # Latest version
+plotly==5.24.1                     # Latest version
+streamlit-folium==0.22.0           # Latest version
+
+# Vector Database & RAG
+chromadb==0.5.20                   # Latest version now supports Python 3.11
+langchain==0.3.7                   # Latest stable version supports Python 3.11
+langchain-core==0.3.17             # Core dependency
+langchain-community==0.3.7         # Community integrations
+
+# Utilities
+python-dotenv==1.0.1               # Latest version
+pyyaml==6.0.2                      # Latest version
+aiofiles==24.1.0                   # Latest version
+pydantic==2.9.2                    # Latest v2 with Python 3.11 support
+
+# Testing
+pytest==8.3.3                      # Latest version supports Python 3.11
+pytest-asyncio==0.24.0             # Latest version
+
+# Additional utilities  
+tenacity==9.0.0                    # Latest version
+httpx==0.27.2                      # Latest version
+
+# Note: asyncio is built into Python 3.11.13, no need to install separately
+python-multipart

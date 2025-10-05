@@ -1,0 +1,689 @@
+# API Documentation - Disaster Response Multi-Modal Agent
+
+## Overview
+
+The Disaster Response Multi-Modal Agent provides a comprehensive REST API for processing emergency incidents using advanced AI technologies. This document covers all available endpoints, request/response formats, and integration guidelines.
+
+## Base Information
+
+- **Base URL**: `http://localhost:8080` (development) or your production domain
+- **API Version**: v1
+- **Content-Type**: `application/json`
+- **Authentication**: API Key or JWT Token (see Security section)
+
+## Quick Start
+
+### 1. Get API Key
+```bash
+curl -X POST http://localhost:8080/auth/api-key \
+  -H "Content-Type: application/json" \
+  -d '{"user_id": "your_user_id"}'
+```
+
+### 2. Process Emergency Incident
+```bash
+curl -X POST http://localhost:8080/api/v1/incidents/process \
+  -H "Authorization: Bearer your_api_key" \
+  -H "Content-Type: multipart/form-data" \
+  -F "text_content=Building fire with people trapped" \
+  -F "image=@emergency_image.jpg" \
+  -F "location[lat]=37.7749" \
+  -F "location[lng]=-122.4194"
+```
+
+## Core Endpoints
+
+### Health Check
+```http
+GET /health
+```
+
+**Response**:
+```json
+{
+  "status": "healthy",
+  "timestamp": "2025-10-03T12:00:00Z",
+  "version": "1.0.0",
+  "components": {
+    "database": "healthy",
+    "vision_service": "healthy",
+    "llm_service": "healthy"
+  }
+}
+```
+
+### System Status
+```http
+GET /status
+```
+
+**Response**:
+```json
+{
+  "system": {
+    "uptime": "24:15:30",
+    "memory_usage": "1.2GB",
+    "cpu_usage": "15%",
+    "active_incidents": 12,
+    "processed_today": 156
+  },
+  "services": {
+    "vision_analysis": {
+      "status": "operational",
+      "requests_today": 89,
+      "avg_response_time": "2.3s"
+    },
+    "llm_analysis": {
+      "status": "operational", 
+      "requests_today": 134,
+      "avg_response_time": "1.8s"
+    }
+  }
+}
+```
+
+## Incident Processing
+
+### Process New Incident
+```http
+POST /api/v1/incidents/process
+```
+
+**Headers**:
+```
+Authorization: Bearer {api_key}
+Content-Type: multipart/form-data
+```
+
+**Request Body**:
+- `text_content` (string): Description of the emergency
+- `image` (file, optional): Emergency scene image
+- `location[lat]` (float): Latitude coordinate
+- `location[lng]` (float): Longitude coordinate
+- `source` (string, optional): Source of the report
+- `priority` (string, optional): Initial priority level
+
+**Example**:
+```bash
+curl -X POST http://localhost:8080/api/v1/incidents/process \
+  -H "Authorization: Bearer dr_abc123..." \
+  -F "text_content=Apartment fire on 5th floor, people trapped" \
+  -F "image=@fire_scene.jpg" \
+  -F "location[lat]=37.7749" \
+  -F "location[lng]=-122.4194" \
+  -F "source=emergency_call"
+```
+
+**Response**:
+```json
+{
+  "status": "SUCCESS",
+  "incident_id": "INC_20251003_001",
+  "processing_time_seconds": 4.2,
+  "analysis": {
+    "disaster_type": "fire",
+    "severity": 8.5,
+    "urgency": "HIGH",
+    "confidence": 0.92,
+    "estimated_affected_population": 45,
+    "vision_analysis": {
+      "detected_objects": ["building", "fire", "smoke", "people"],
+      "damage_assessment": "severe",
+      "structural_risk": "high"
+    },
+    "text_analysis": {
+      "key_phrases": ["apartment fire", "trapped people", "5th floor"],
+      "sentiment": "urgent",
+      "entities": ["building", "people", "floor"]
+    },
+    "action_plan": {
+      "immediate_actions": [
+        "Deploy ladder truck for upper floor access",
+        "Establish evacuation perimeter",
+        "Request additional fire engines"
+      ],
+      "resource_requirements": {
+        "personnel": {"firefighters": 12, "paramedics": 4},
+        "vehicles": {"fire_engines": 3, "ambulances": 2}
+      },
+      "timeline": {
+        "0-5_minutes": ["Secure perimeter", "Begin ladder deployment"],
+        "5-15_minutes": ["Start evacuation", "Fire suppression"],
+        "15-30_minutes": ["Search and rescue", "Medical triage"]
+      }
+    }
+  },
+  "resource_allocation": {
+    "allocated_resources": [
+      {
+        "resource_id": "FE001",
+        "type": "fire_engine",
+        "eta_minutes": 8,
+        "crew_size": 6
+      }
+    ],
+    "total_response_time_minutes": 12,
+    "coverage_percentage": 95
+  }
+}
+```
+
+### Get Incident Details
+```http
+GET /api/v1/incidents/{incident_id}
+```
+
+**Response**:
+```json
+{
+  "incident_id": "INC_20251003_001",
+  "status": "ACTIVE",
+  "created_at": "2025-10-03T12:00:00Z",
+  "updated_at": "2025-10-03T12:05:00Z",
+  "disaster_type": "fire",
+  "severity": 8.5,
+  "urgency": "HIGH",
+  "location": {
+    "lat": 37.7749,
+    "lng": -122.4194,
+    "description": "Downtown SF"
+  },
+  "analysis_results": {
+    // ... full analysis data
+  },
+  "timeline": [
+    {
+      "timestamp": "2025-10-03T12:00:00Z",
+      "event": "Incident reported",
+      "details": "Initial emergency call received"
+    },
+    {
+      "timestamp": "2025-10-03T12:02:00Z", 
+      "event": "Analysis completed",
+      "details": "AI analysis finished, severity 8.5"
+    }
+  ]
+}
+```
+
+### List Incidents
+```http
+GET /api/v1/incidents
+```
+
+**Query Parameters**:
+- `status` (string): Filter by status (ACTIVE, RESOLVED, etc.)
+- `disaster_type` (string): Filter by type (fire, flood, etc.)
+- `urgency` (string): Filter by urgency (LOW, MEDIUM, HIGH, CRITICAL)
+- `limit` (int): Maximum results (default: 50)
+- `offset` (int): Pagination offset (default: 0)
+- `sort` (string): Sort field (created_at, severity, urgency)
+- `order` (string): Sort order (asc, desc)
+
+**Example**:
+```http
+GET /api/v1/incidents?status=ACTIVE&urgency=HIGH&limit=20&sort=created_at&order=desc
+```
+
+**Response**:
+```json
+{
+  "incidents": [
+    {
+      "incident_id": "INC_20251003_001",
+      "disaster_type": "fire",
+      "severity": 8.5,
+      "urgency": "HIGH",
+      "status": "ACTIVE",
+      "location": {"lat": 37.7749, "lng": -122.4194},
+      "created_at": "2025-10-03T12:00:00Z",
+      "estimated_affected_population": 45
+    }
+  ],
+  "pagination": {
+    "total": 156,
+    "limit": 20,
+    "offset": 0,
+    "has_more": true
+  }
+}
+```
+
+### Update Incident Status
+```http
+PUT /api/v1/incidents/{incident_id}/status
+```
+
+**Request Body**:
+```json
+{
+  "status": "RESOLVED",
+  "resolution_notes": "Fire extinguished, all residents safely evacuated",
+  "resolved_by": "Battalion Chief Smith"
+}
+```
+
+## Resource Management
+
+### Get Available Resources
+```http
+GET /api/v1/resources
+```
+
+**Query Parameters**:
+- `type` (string): Resource type (fire_engines, ambulances, police_units)
+- `status` (string): Status filter (available, deployed, maintenance)
+- `location[lat]` (float): Center latitude for proximity search
+- `location[lng]` (float): Center longitude for proximity search
+- `radius_km` (float): Search radius in kilometers
+
+**Response**:
+```json
+{
+  "resources": [
+    {
+      "resource_id": "FE001",
+      "type": "fire_engine",
+      "status": "available",
+      "crew_size": 6,
+      "location": {
+        "lat": 37.7749,
+        "lng": -122.4194,
+        "station": "Fire Station 1"
+      },
+      "capabilities": ["fire_suppression", "rescue", "medical"],
+      "equipment": {
+        "water_capacity": 750,
+        "pump_capacity": 1500
+      },
+      "estimated_response_time_minutes": 8
+    }
+  ],
+  "summary": {
+    "total_resources": 25,
+    "available": 18,
+    "deployed": 6,
+    "maintenance": 1
+  }
+}
+```
+
+### Allocate Resources
+```http
+POST /api/v1/resources/allocate
+```
+
+**Request Body**:
+```json
+{
+  "incident_id": "INC_20251003_001",
+  "location": {
+    "lat": 37.7749,
+    "lng": -122.4194
+  },
+  "requirements": {
+    "fire_engines": 2,
+    "ambulances": 1,
+    "personnel_minimum": 12
+  },
+  "constraints": {
+    "max_response_time_minutes": 15,
+    "max_distance_km": 10
+  }
+}
+```
+
+**Response**:
+```json
+{
+  "allocation_id": "ALLOC_20251003_001",
+  "status": "SUCCESS",
+  "allocated_resources": [
+    {
+      "resource_id": "FE001",
+      "type": "fire_engine",
+      "crew_size": 6,
+      "eta_minutes": 8,
+      "distance_km": 3.2,
+      "status": "dispatched"
+    }
+  ],
+  "summary": {
+    "total_personnel": 14,
+    "estimated_response_time_minutes": 12,
+    "coverage_percentage": 95,
+    "total_cost_estimate": 2400.00
+  }
+}
+```
+
+## Analytics and Reporting
+
+### Get Incident Analytics
+```http
+GET /api/v1/analytics/incidents
+```
+
+**Query Parameters**:
+- `start_date` (string): Start date (YYYY-MM-DD)
+- `end_date` (string): End date (YYYY-MM-DD)
+- `group_by` (string): Grouping (day, week, month, disaster_type)
+- `metrics` (string): Comma-separated metrics (count, avg_severity, response_time)
+
+**Response**:
+```json
+{
+  "period": {
+    "start_date": "2025-10-01",
+    "end_date": "2025-10-03",
+    "total_days": 3
+  },
+  "summary": {
+    "total_incidents": 156,
+    "avg_severity": 6.2,
+    "avg_response_time_minutes": 14.5,
+    "most_common_type": "fire"
+  },
+  "by_disaster_type": {
+    "fire": {"count": 45, "avg_severity": 7.2},
+    "flood": {"count": 23, "avg_severity": 5.8},
+    "accident": {"count": 34, "avg_severity": 5.1}
+  },
+  "trends": [
+    {"date": "2025-10-01", "incidents": 48, "avg_severity": 6.1},
+    {"date": "2025-10-02", "incidents": 52, "avg_severity": 6.3},
+    {"date": "2025-10-03", "incidents": 56, "avg_severity": 6.2}
+  ]
+}
+```
+
+### Generate Report
+```http
+POST /api/v1/reports/generate
+```
+
+**Request Body**:
+```json
+{
+  "report_type": "daily_summary",
+  "date_range": {
+    "start_date": "2025-10-01",
+    "end_date": "2025-10-03"
+  },
+  "include_sections": ["overview", "incidents", "resources", "performance"],
+  "format": "json"
+}
+```
+
+**Response**:
+```json
+{
+  "report_id": "RPT_20251003_001",
+  "status": "completed",
+  "generated_at": "2025-10-03T12:30:00Z",
+  "download_url": "/api/v1/reports/RPT_20251003_001/download",
+  "summary": {
+    "total_incidents": 156,
+    "critical_incidents": 12,
+    "avg_response_time": "14.5 minutes",
+    "resource_utilization": "78%"
+  }
+}
+```
+
+## Real-time Data
+
+### WebSocket Connection
+```javascript
+const ws = new WebSocket('ws://localhost:8080/ws/incidents');
+
+ws.onmessage = function(event) {
+  const data = JSON.parse(event.data);
+  console.log('New incident:', data);
+};
+
+// Subscribe to specific types
+ws.send(JSON.stringify({
+  action: 'subscribe',
+  filters: {
+    disaster_types: ['fire', 'earthquake'],
+    urgency_levels: ['HIGH', 'CRITICAL']
+  }
+}));
+```
+
+**WebSocket Events**:
+```json
+{
+  "event_type": "incident_created",
+  "timestamp": "2025-10-03T12:35:00Z",
+  "data": {
+    "incident_id": "INC_20251003_002",
+    "disaster_type": "earthquake",
+    "severity": 9.1,
+    "urgency": "CRITICAL",
+    "location": {"lat": 37.7749, "lng": -122.4194}
+  }
+}
+```
+
+### Server-Sent Events
+```http
+GET /api/v1/stream/incidents
+```
+
+```bash
+curl -N -H "Accept: text/event-stream" \
+  http://localhost:8080/api/v1/stream/incidents
+```
+
+## Authentication & Security
+
+### Generate API Key
+```http
+POST /auth/api-key
+```
+
+**Request Body**:
+```json
+{
+  "user_id": "emergency_user_001",
+  "permissions": ["read", "write", "admin"],
+  "expires_in_days": 30
+}
+```
+
+**Response**:
+```json
+{
+  "api_key": "dr_abc123def456ghi789...",
+  "user_id": "emergency_user_001",
+  "permissions": ["read", "write", "admin"],
+  "created_at": "2025-10-03T12:00:00Z",
+  "expires_at": "2025-11-02T12:00:00Z"
+}
+```
+
+### JWT Token Authentication
+```http
+POST /auth/login
+```
+
+**Request Body**:
+```json
+{
+  "username": "emergency_operator",
+  "password": "secure_password"
+}
+```
+
+**Response**:
+```json
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIs...",
+  "refresh_token": "eyJhbGciOiJIUzI1NiIs...",
+  "token_type": "bearer",
+  "expires_in": 1800
+}
+```
+
+## Error Handling
+
+### Standard Error Format
+```json
+{
+  "error": {
+    "code": "INVALID_REQUEST",
+    "message": "Required field 'location' is missing",
+    "details": {
+      "field": "location",
+      "required": true
+    },
+    "request_id": "req_20251003_12345",
+    "timestamp": "2025-10-03T12:00:00Z"
+  }
+}
+```
+
+### Error Codes
+
+| Code | HTTP Status | Description |
+|------|-------------|-------------|
+| `INVALID_REQUEST` | 400 | Malformed request |
+| `UNAUTHORIZED` | 401 | Invalid or missing authentication |
+| `FORBIDDEN` | 403 | Insufficient permissions |
+| `NOT_FOUND` | 404 | Resource not found |
+| `RATE_LIMITED` | 429 | Too many requests |
+| `INTERNAL_ERROR` | 500 | Server error |
+| `SERVICE_UNAVAILABLE` | 503 | AI services unavailable |
+
+## Rate Limits
+
+| Endpoint Category | Requests per Minute | Burst Limit |
+|-------------------|---------------------|-------------|
+| Authentication | 10 | 20 |
+| Incident Processing | 30 | 50 |
+| Resource Management | 60 | 100 |
+| Analytics | 100 | 150 |
+| General API | 100 | 150 |
+
+**Rate limit headers**:
+```
+X-RateLimit-Limit: 30
+X-RateLimit-Remaining: 25
+X-RateLimit-Reset: 1635789600
+```
+
+## SDKs and Libraries
+
+### Python SDK
+```bash
+pip install disaster-response-client
+```
+
+```python
+from disaster_response import DisasterResponseClient
+
+client = DisasterResponseClient(
+    api_key="dr_abc123...",
+    base_url="http://localhost:8080"
+)
+
+# Process incident
+result = client.process_incident(
+    text_content="Building fire with people trapped",
+    image_path="emergency.jpg",
+    location={"lat": 37.7749, "lng": -122.4194}
+)
+
+print(f"Incident ID: {result.incident_id}")
+print(f"Severity: {result.analysis.severity}")
+```
+
+### JavaScript SDK
+```bash
+npm install @disaster-response/client
+```
+
+```javascript
+import { DisasterResponseClient } from '@disaster-response/client';
+
+const client = new DisasterResponseClient({
+  apiKey: 'dr_abc123...',
+  baseUrl: 'http://localhost:8080'
+});
+
+const result = await client.processIncident({
+  textContent: 'Building fire with people trapped',
+  image: fileInput.files[0],
+  location: { lat: 37.7749, lng: -122.4194 }
+});
+
+console.log('Incident ID:', result.incidentId);
+```
+
+## Webhooks
+
+### Configure Webhook
+```http
+POST /api/v1/webhooks
+```
+
+**Request Body**:
+```json
+{
+  "url": "https://your-system.com/disaster-webhook",
+  "events": ["incident.created", "incident.updated", "resource.allocated"],
+  "secret": "webhook_secret_key"
+}
+```
+
+### Webhook Payload
+```json
+{
+  "webhook_id": "wh_20251003_001",
+  "event": "incident.created",
+  "timestamp": "2025-10-03T12:00:00Z",
+  "data": {
+    "incident_id": "INC_20251003_001",
+    "disaster_type": "fire",
+    "severity": 8.5,
+    "urgency": "HIGH"
+  },
+  "signature": "sha256=abc123..."
+}
+```
+
+## Testing and Development
+
+### Test Endpoints
+```http
+GET /test/health
+POST /test/mock-incident
+GET /test/sample-data
+```
+
+### Sample Data
+```bash
+# Load sample incidents for testing
+curl -X POST http://localhost:8080/test/load-sample-data
+```
+
+### API Playground
+Visit `http://localhost:8080/docs` for interactive API documentation and testing interface.
+
+## Support and Resources
+
+- **Documentation**: [https://docs.disaster-response.ai](https://docs.disaster-response.ai)
+- **API Status**: [https://status.disaster-response.ai](https://status.disaster-response.ai)
+- **Support Email**: support@disaster-response.ai
+- **GitHub**: [https://github.com/disaster-response/api](https://github.com/disaster-response/api)
+
+## Changelog
+
+### v1.0.0 (2025-10-03)
+- Initial API release
+- Core incident processing endpoints
+- Resource management system
+- Real-time WebSocket support
+- Authentication and rate limiting

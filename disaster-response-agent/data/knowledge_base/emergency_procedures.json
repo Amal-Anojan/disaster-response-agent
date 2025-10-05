@@ -1,0 +1,175 @@
+{
+  "procedures": {
+    "fire": [
+      "Deploy fire suppression units with appropriate foam/water based on fire type",
+      "Establish evacuation perimeter based on wind direction and fire spread",
+      "Set up incident command post at safe distance upwind from fire",
+      "Call additional mutual aid from neighboring fire departments",
+      "Coordinate with utility companies for gas and power shutoffs",
+      "Deploy ladder trucks for aerial operations if multi-story buildings involved",
+      "Establish water supply from nearest hydrants or draft operations",
+      "Request hazmat team if chemicals or industrial materials involved"
+    ],
+    "flood": [
+      "Evacuate low-lying areas and flood-prone zones immediately",
+      "Deploy swift water rescue teams with boats and high-water vehicles",
+      "Set up emergency shelters on high ground away from flood zones",
+      "Coordinate with utility companies for preventive power shutoffs",
+      "Establish communication with downstream communities",
+      "Deploy sandbags or temporary flood barriers where possible",
+      "Set up water rescue staging areas near affected zones",
+      "Monitor dam and levee integrity in upstream areas"
+    ],
+    "earthquake": [
+      "Deploy urban search and rescue teams with specialized equipment",
+      "Conduct rapid damage assessment of critical infrastructure",
+      "Set up triage areas and medical stations in safe open areas",
+      "Inspect bridges and overpasses for structural integrity",
+      "Activate mutual aid agreements with neighboring jurisdictions",
+      "Establish alternate communication systems if primary systems fail",
+      "Deploy structural engineers to assess building safety",
+      "Set up emergency shelters away from damaged structures"
+    ],
+    "storm": [
+      "Clear roads of debris and fallen trees for emergency access",
+      "Restore power to critical facilities first (hospitals, emergency services)",
+      "Set up emergency shelters for displaced residents",
+      "Deploy emergency generators to critical infrastructure",
+      "Coordinate with utility companies for systematic power restoration",
+      "Inspect and repair damaged traffic signals and street signs",
+      "Establish debris removal and collection points",
+      "Monitor flooding in low-lying areas and storm drains"
+    ],
+    "landslide": [
+      "Evacuate areas below unstable slopes immediately",
+      "Deploy search and rescue teams to affected areas",
+      "Establish exclusion zones around unstable terrain",
+      "Monitor adjacent slopes for additional slide potential",
+      "Coordinate with geological survey teams for stability assessment",
+      "Set up alternative routes around blocked roadways",
+      "Deploy heavy equipment for debris removal and rescue operations",
+      "Establish temporary shelters for evacuated residents"
+    ],
+    "hazmat": [
+      "Establish hot, warm, and cold zones around contamination area",
+      "Deploy hazmat teams with appropriate protective equipment",
+      "Evacuate downwind areas based on chemical type and wind patterns",
+      "Coordinate with poison control and medical specialists",
+      "Set up decontamination stations for exposed individuals",
+      "Monitor air quality and contamination levels continuously",
+      "Establish unified command with environmental agencies",
+      "Implement shelter-in-place orders for areas that cannot be evacuated"
+    ]
+  },
+  "contacts": {
+    "fire_department": "+1-555-FIRE-911",
+    "police_department": "+1-555-POLICE-911", 
+    "medical_services": "+1-555-MEDICAL-911",
+    "emergency_management": "+1-555-EMERGENCY",
+    "utility_company_electric": "+1-555-ELECTRIC",
+    "utility_company_gas": "+1-555-GAS-UTIL",
+    "utility_company_water": "+1-555-WATER-UTIL",
+    "red_cross": "+1-555-REDCROSS",
+    "salvation_army": "+1-555-SALVATION",
+    "national_guard": "+1-555-NATGUARD",
+    "fema_regional": "+1-555-FEMA-REG",
+    "poison_control": "+1-800-222-1222",
+    "hospital_main": "+1-555-HOSPITAL",
+    "emergency_broadcast": "+1-555-EBS-ALERT"
+  },
+  "resources": {
+    "fire": {
+      "personnel": ["fire_fighters", "paramedics", "incident_commanders", "hazmat_specialists"],
+      "vehicles": ["fire_engines", "ladder_trucks", "rescue_vehicles", "hazmat_units"],
+      "equipment": ["hoses", "foam_systems", "breathing_apparatus", "thermal_cameras"]
+    },
+    "flood": {
+      "personnel": ["swift_water_rescue", "boat_operators", "emergency_coordinators"],
+      "vehicles": ["rescue_boats", "high_water_vehicles", "amphibious_vehicles"],
+      "equipment": ["life_jackets", "throw_bags", "water_pumps", "sandbags"]
+    },
+    "earthquake": {
+      "personnel": ["search_rescue_teams", "structural_engineers", "medical_personnel"],
+      "vehicles": ["heavy_rescue_trucks", "cranes", "bulldozers"],
+      "equipment": ["listening_devices", "cutting_tools", "shoring_materials", "medical_supplies"]
+    },
+    "storm": {
+      "personnel": ["tree_removal_crews", "power_restoration_teams", "traffic_control"],
+      "vehicles": ["bucket_trucks", "chainsaws_trucks", "generators_mobile"],
+      "equipment": ["chainsaws", "generators", "emergency_lighting", "traffic_control_devices"]
+    },
+    "landslide": {
+      "personnel": ["geological_specialists", "heavy_equipment_operators", "search_rescue"],
+      "vehicles": ["excavators", "bulldozers", "dump_trucks"],
+      "equipment": ["soil_monitoring_devices", "slope_stabilization_materials"]
+    },
+    "hazmat": {
+      "personnel": ["hazmat_technicians", "decontamination_specialists", "air_monitoring_teams"],
+      "vehicles": ["hazmat_response_units", "decontamination_vehicles", "air_monitoring_units"],
+      "equipment": ["protective_suits", "detection_equipment", "decontamination_supplies", "containment_materials"]
+    }
+  },
+  "response_times": {
+    "fire": {
+      "urban": 8,
+      "suburban": 12,
+      "rural": 20
+    },
+    "flood": {
+      "flash_flood": 5,
+      "river_flood": 15,
+      "coastal_flood": 10
+    },
+    "earthquake": {
+      "initial_response": 10,
+      "search_rescue": 30,
+      "medical_triage": 15
+    },
+    "storm": {
+      "during_storm": 30,
+      "post_storm": 10
+    },
+    "landslide": {
+      "active_slide": 8,
+      "post_slide": 15
+    },
+    "hazmat": {
+      "known_chemical": 12,
+      "unknown_chemical": 20
+    }
+  },
+  "escalation_thresholds": {
+    "severity_levels": {
+      "1-3": "local_response",
+      "4-6": "regional_mutual_aid", 
+      "7-8": "state_emergency_declaration",
+      "9-10": "federal_emergency_declaration"
+    },
+    "population_thresholds": {
+      "under_100": "local_response",
+      "100_1000": "regional_response",
+      "1000_10000": "state_response",
+      "over_10000": "federal_response"
+    }
+  },
+  "communication_protocols": {
+    "immediate_notifications": [
+      "incident_commander",
+      "emergency_dispatch", 
+      "hospital_emergency_department",
+      "utility_companies"
+    ],
+    "30_minute_notifications": [
+      "emergency_management_director",
+      "mayor_county_executive",
+      "media_relations",
+      "red_cross_chapter"
+    ],
+    "1_hour_notifications": [
+      "state_emergency_management",
+      "federal_agencies_if_required",
+      "mutual_aid_partners",
+      "community_organizations"
+    ]
+  }
+}

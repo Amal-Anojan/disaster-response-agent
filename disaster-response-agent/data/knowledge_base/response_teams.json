@@ -1,0 +1,424 @@
+{
+  "teams": {
+    "fire_department": {
+      "name": "Metro Fire Department",
+      "specializations": [
+        "fire_suppression",
+        "hazmat_response",
+        "vehicle_rescue",
+        "high_angle_rescue",
+        "swift_water_rescue"
+      ],
+      "response_time_minutes": 8,
+      "capacity": 50,
+      "coverage_area_km": 25,
+      "equipment": [
+        "fire_engines",
+        "ladder_trucks",
+        "hazmat_units",
+        "rescue_vehicles"
+      ],
+      "contact": {
+        "dispatch": "+1-555-FIRE-911",
+        "chief": "+1-555-FIRE-001",
+        "hazmat": "+1-555-FIRE-HAZ"
+      },
+      "stations": [
+        {
+          "station_id": "FS001",
+          "location": {"lat": 37.7749, "lng": -122.4194},
+          "personnel_count": 12,
+          "vehicles": ["FE001", "LT001", "AMB001"]
+        },
+        {
+          "station_id": "FS002", 
+          "location": {"lat": 37.7849, "lng": -122.4094},
+          "personnel_count": 10,
+          "vehicles": ["FE002", "RV001"]
+        },
+        {
+          "station_id": "FS003",
+          "location": {"lat": 37.7649, "lng": -122.4294},
+          "personnel_count": 8,
+          "vehicles": ["FE003", "HZ001"]
+        }
+      ]
+    },
+    "police_department": {
+      "name": "Metro Police Department",
+      "specializations": [
+        "traffic_control",
+        "crowd_management",
+        "security_operations",
+        "tactical_response",
+        "crime_scene_management"
+      ],
+      "response_time_minutes": 6,
+      "capacity": 80,
+      "coverage_area_km": 40,
+      "equipment": [
+        "patrol_cars",
+        "motorcycles",
+        "tactical_vehicles",
+        "mobile_command_units"
+      ],
+      "contact": {
+        "dispatch": "+1-555-POLICE-911",
+        "commander": "+1-555-POLICE-001",
+        "tactical": "+1-555-POLICE-SWAT"
+      },
+      "districts": [
+        {
+          "district_id": "PD001",
+          "location": {"lat": 37.7749, "lng": -122.4194},
+          "personnel_count": 25,
+          "vehicles": ["PU001", "PU002", "MC001"]
+        },
+        {
+          "district_id": "PD002",
+          "location": {"lat": 37.7849, "lng": -122.4094}, 
+          "personnel_count": 20,
+          "vehicles": ["PU003", "PU004", "TV001"]
+        },
+        {
+          "district_id": "PD003",
+          "location": {"lat": 37.7649, "lng": -122.4294},
+          "personnel_count": 18,
+          "vehicles": ["PU005", "PU006", "MC002"]
+        }
+      ]
+    },
+    "medical_services": {
+      "name": "Emergency Medical Services",
+      "specializations": [
+        "emergency_medicine",
+        "trauma_care",
+        "triage_operations",
+        "patient_transport",
+        "mass_casualty_incidents"
+      ],
+      "response_time_minutes": 10,
+      "capacity": 40,
+      "coverage_area_km": 35,
+      "equipment": [
+        "ambulances",
+        "mobile_intensive_care_units",
+        "mass_casualty_units",
+        "medical_helicopters"
+      ],
+      "contact": {
+        "dispatch": "+1-555-MEDICAL-911",
+        "supervisor": "+1-555-MEDICAL-001",
+        "trauma_center": "+1-555-TRAUMA-CTR"
+      },
+      "stations": [
+        {
+          "station_id": "EMS001",
+          "location": {"lat": 37.7749, "lng": -122.4194},
+          "personnel_count": 12,
+          "vehicles": ["AMB001", "AMB002", "MICU001"]
+        },
+        {
+          "station_id": "EMS002",
+          "location": {"lat": 37.7849, "lng": -122.4094},
+          "personnel_count": 10,
+          "vehicles": ["AMB003", "AMB004"]
+        },
+        {
+          "station_id": "EMS003",
+          "location": {"lat": 37.7649, "lng": -122.4294},
+          "personnel_count": 8,
+          "vehicles": ["AMB005", "MCU001"]
+        }
+      ]
+    },
+    "search_rescue": {
+      "name": "Urban Search and Rescue Team",
+      "specializations": [
+        "structural_collapse_rescue",
+        "confined_space_rescue",
+        "high_angle_rescue",
+        "swift_water_rescue",
+        "wilderness_rescue"
+      ],
+      "response_time_minutes": 15,
+      "capacity": 20,
+      "coverage_area_km": 50,
+      "equipment": [
+        "heavy_rescue_vehicles",
+        "specialized_rescue_tools",
+        "detection_equipment",
+        "mobile_command_posts"
+      ],
+      "contact": {
+        "dispatch": "+1-555-RESCUE-911",
+        "team_leader": "+1-555-RESCUE-001",
+        "logistics": "+1-555-RESCUE-LOG"
+      },
+      "teams": [
+        {
+          "team_id": "USAR001",
+          "location": {"lat": 37.7749, "lng": -122.4194},
+          "personnel_count": 8,
+          "vehicles": ["HRV001", "MCP001"],
+          "specialty": "structural_collapse"
+        },
+        {
+          "team_id": "USAR002", 
+          "location": {"lat": 37.7849, "lng": -122.4094},
+          "personnel_count": 6,
+          "vehicles": ["HRV002"],
+          "specialty": "swift_water"
+        }
+      ]
+    },
+    "hazmat_response": {
+      "name": "Hazardous Materials Response Team",
+      "specializations": [
+        "chemical_spill_response",
+        "decontamination_operations",
+        "air_monitoring",
+        "leak_control",
+        "environmental_protection"
+      ],
+      "response_time_minutes": 20,
+      "capacity": 15,
+      "coverage_area_km": 60,
+      "equipment": [
+        "hazmat_response_vehicles",
+        "decontamination_units", 
+        "air_monitoring_equipment",
+        "chemical_suits"
+      ],
+      "contact": {
+        "dispatch": "+1-555-HAZMAT-911",
+        "team_leader": "+1-555-HAZMAT-001",
+        "chemist": "+1-555-HAZMAT-LAB"
+      },
+      "units": [
+        {
+          "unit_id": "HAZ001",
+          "location": {"lat": 37.7749, "lng": -122.4194},
+          "personnel_count": 8,
+          "vehicles": ["HZ001", "DU001"],
+          "specialty": "chemical_response"
+        },
+        {
+          "unit_id": "HAZ002",
+          "location": {"lat": 37.7649, "lng": -122.4294},
+          "personnel_count": 7,
+          "vehicles": ["HZ002"],
+          "specialty": "environmental_monitoring"
+        }
+      ]
+    },
+    "emergency_management": {
+      "name": "Emergency Operations Center",
+      "specializations": [
+        "incident_command",
+        "resource_coordination", 
+        "public_information",
+        "evacuation_coordination",
+        "multi_agency_coordination"
+      ],
+      "response_time_minutes": 5,
+      "capacity": 30,
+      "coverage_area_km": 100,
+      "equipment": [
+        "mobile_command_vehicles",
+        "communication_systems",
+        "emergency_broadcast_systems",
+        "coordination_software"
+      ],
+      "contact": {
+        "eoc": "+1-555-EOC-MAIN",
+        "director": "+1-555-EOC-DIR",
+        "public_info": "+1-555-EOC-PIO"
+      },
+      "facilities": [
+        {
+          "facility_id": "EOC001",
+          "location": {"lat": 37.7749, "lng": -122.4194},
+          "personnel_count": 15,
+          "type": "primary_eoc"
+        },
+        {
+          "facility_id": "EOC002",
+          "location": {"lat": 37.7849, "lng": -122.4094},
+          "personnel_count": 8,
+          "type": "backup_eoc"
+        }
+      ]
+    },
+    "public_works": {
+      "name": "Public Works Department",
+      "specializations": [
+        "debris_removal",
+        "road_repair",
+        "utility_restoration",
+        "infrastructure_assessment",
+        "traffic_management"
+      ],
+      "response_time_minutes": 30,
+      "capacity": 60,
+      "coverage_area_km": 45,
+      "equipment": [
+        "dump_trucks",
+        "bulldozers",
+        "road_graders",
+        "emergency_generators",
+        "water_pumps"
+      ],
+      "contact": {
+        "dispatch": "+1-555-PW-DISPATCH",
+        "supervisor": "+1-555-PW-SUPER",
+        "utilities": "+1-555-PW-UTIL"
+      },
+      "crews": [
+        {
+          "crew_id": "PW001",
+          "location": {"lat": 37.7749, "lng": -122.4194},
+          "personnel_count": 20,
+          "vehicles": ["DT001", "DT002", "BD001"],
+          "specialty": "debris_removal"
+        },
+        {
+          "crew_id": "PW002",
+          "location": {"lat": 37.7849, "lng": -122.4094},
+          "personnel_count": 15,
+          "vehicles": ["RG001", "WP001", "EG001"],
+          "specialty": "infrastructure_repair"
+        }
+      ]
+    },
+    "utility_companies": {
+      "name": "Utility Emergency Response",
+      "specializations": [
+        "power_restoration",
+        "gas_leak_response",
+        "water_system_repair",
+        "telecommunications_restoration",
+        "emergency_shutoffs"
+      ],
+      "response_time_minutes": 25,
+      "capacity": 100,
+      "coverage_area_km": 80,
+      "equipment": [
+        "bucket_trucks",
+        "gas_detection_equipment", 
+        "water_repair_equipment",
+        "emergency_generators",
+        "mobile_substations"
+      ],
+      "contact": {
+        "electric": "+1-555-ELECTRIC-EMRG",
+        "gas": "+1-555-GAS-EMRG",
+        "water": "+1-555-WATER-EMRG",
+        "telecom": "+1-555-TELECOM-EMRG"
+      },
+      "divisions": [
+        {
+          "division_id": "UTIL001",
+          "service_type": "electric",
+          "location": {"lat": 37.7749, "lng": -122.4194},
+          "personnel_count": 30,
+          "vehicles": ["BT001", "BT002", "EG001"]
+        },
+        {
+          "division_id": "UTIL002",
+          "service_type": "gas",
+          "location": {"lat": 37.7849, "lng": -122.4094},
+          "personnel_count": 20,
+          "vehicles": ["GD001", "GD002"]
+        },
+        {
+          "division_id": "UTIL003",
+          "service_type": "water",
+          "location": {"lat": 37.7649, "lng": -122.4294},
+          "personnel_count": 25,
+          "vehicles": ["WR001", "WR002", "WP001"]
+        }
+      ]
+    }
+  },
+  "mutual_aid_agreements": {
+    "regional_fire": {
+      "description": "Regional Fire Mutual Aid Agreement",
+      "participating_agencies": [
+        "North County Fire",
+        "South Bay Fire District",
+        "East Valley Fire Department"
+      ],
+      "response_time_minutes": 45,
+      "additional_resources": {
+        "fire_engines": 12,
+        "ladder_trucks": 4,
+        "personnel": 80
+      }
+    },
+    "state_emergency": {
+      "description": "State Emergency Response Team",
+      "participating_agencies": [
+        "State Emergency Management",
+        "National Guard",
+        "State Police"
+      ],
+      "response_time_minutes": 120,
+      "additional_resources": {
+        "personnel": 500,
+        "vehicles": 50,
+        "aircraft": 5
+      }
+    },
+    "federal_response": {
+      "description": "Federal Emergency Response",
+      "participating_agencies": [
+        "FEMA",
+        "US Military",
+        "Federal Bureau of Investigation"
+      ],
+      "response_time_minutes": 480,
+      "additional_resources": {
+        "personnel": 2000,
+        "specialized_teams": 10,
+        "heavy_equipment": 100
+      }
+    }
+  },
+  "communication_protocols": {
+    "radio_channels": {
+      "fire_primary": "154.280 MHz",
+      "fire_tactical": "154.265 MHz",
+      "police_primary": "460.250 MHz",
+      "police_tactical": "460.275 MHz",
+      "medical_primary": "463.000 MHz",
+      "command": "453.200 MHz",
+      "mutual_aid": "155.475 MHz"
+    },
+    "notification_hierarchy": {
+      "level_1": ["incident_commander", "fire_chief", "police_chief"],
+      "level_2": ["emergency_manager", "public_works_director", "hospital_administrator"],
+      "level_3": ["mayor", "city_manager", "media_relations"],
+      "level_4": ["county_officials", "state_emergency_management"]
+    }
+  },
+  "performance_metrics": {
+    "response_time_targets": {
+      "fire_suppression": 8,
+      "medical_emergency": 8,
+      "police_response": 6,
+      "hazmat_response": 15,
+      "search_rescue": 20
+    },
+    "resource_utilization_targets": {
+      "daily_availability": 0.85,
+      "peak_readiness": 0.95,
+      "mutual_aid_threshold": 0.70
+    },
+    "training_requirements": {
+      "annual_hours_minimum": 120,
+      "specialized_certification": 40,
+      "multi_agency_exercises": 4
+    }
+  }
+}

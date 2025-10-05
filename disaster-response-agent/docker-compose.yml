@@ -1,0 +1,147 @@
+version: '3.8'
+
+services:
+  # PostgreSQL Database
+  postgres:
+    image: postgres:15
+    container_name: disaster-response-db
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-disaster_response}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-secure_password_123}
+      POSTGRES_DB: ${POSTGRES_DB:-disaster_response}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./data/init.sql:/docker-entrypoint-initdb.d/init.sql
+    networks:
+      - disaster-network
+    restart: unless-stopped
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: disaster-response-redis
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-redis_password_456}
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    networks:
+      - disaster-network
+    restart: unless-stopped
+
+  # Vision Service
+  vision-service:
+    build:
+      context: .
+      dockerfile: docker/services/vision/Dockerfile
+    container_name: disaster-vision-service
+    environment:
+      - CEREBRAS_API_KEY=${CEREBRAS_API_KEY}
+      - HUGGINGFACE_TOKEN=${HUGGINGFACE_TOKEN}
+    ports:
+      - "8081:8081"
+    volumes:
+      - ./data/temp_images:/app/temp_images
+      - ./data/datasets:/app/datasets
+    networks:
+      - disaster-network
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  # LLM Service  
+  llm-service:
+    build:
+      context: .
+      dockerfile: docker/services/llm/Dockerfile
+    container_name: disaster-llm-service
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - HUGGINGFACE_TOKEN=${HUGGINGFACE_TOKEN}
+    ports:
+      - "8082:8082"
+    volumes:
+      - ./data/knowledge_base:/app/knowledge_base
+    networks:
+      - disaster-network
+    depends_on:
+      - redis
+    restart: unless-stopped
+
+  # MCP Gateway (Main API)
+  mcp-gateway:
+    build:
+      context: .
+      dockerfile: docker/services/mcp/Dockerfile
+    container_name: disaster-mcp-gateway
+    environment:
+      - CEREBRAS_API_KEY=${CEREBRAS_API_KEY}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - HUGGINGFACE_TOKEN=${HUGGINGFACE_TOKEN}
+      - POSTGRES_HOST=postgres
+      - POSTGRES_USER=${POSTGRES_USER:-disaster_response}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-secure_password_123}
+      - POSTGRES_DB=${POSTGRES_DB:-disaster_response}
+      - REDIS_HOST=redis
+      - REDIS_PASSWORD=${REDIS_PASSWORD:-redis_password_456}
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./data/temp_images:/app/temp_images
+      - ./logs:/app/logs
+    networks:
+      - disaster-network
+    depends_on:
+      - postgres
+      - redis
+      - vision-service
+      - llm-service
+    restart: unless-stopped
+
+  # Streamlit Dashboard
+  dashboard:
+    build:
+      context: .
+      dockerfile: docker/services/ui/Dockerfile
+    container_name: disaster-dashboard
+    environment:
+      - MCP_API_URL=http://mcp-gateway:8080/api/v1
+    ports:
+      - "8501:8501"
+    networks:
+      - disaster-network
+    depends_on:
+      - mcp-gateway
+    restart: unless-stopped
+
+  # Nginx Reverse Proxy (Optional)
+  nginx:
+    image: nginx:alpine
+    container_name: disaster-nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+      - ./config/ssl:/etc/nginx/ssl
+    networks:
+      - disaster-network
+    depends_on:
+      - mcp-gateway
+      - dashboard
+    restart: unless-stopped
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+
+networks:
+  disaster-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

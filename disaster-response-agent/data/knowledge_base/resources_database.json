@@ -1,0 +1,608 @@
+{
+  "vehicles": {
+    "fire_engines": {
+      "FE001": {
+        "type": "Type 1 Fire Engine",
+        "water_capacity_gallons": 500,
+        "pump_capacity_gpm": 1500,
+        "crew_capacity": 6,
+        "equipment": [
+          "1500 ft attack hose",
+          "200 ft supply hose", 
+          "ground ladders",
+          "SCBA equipment",
+          "medical supplies",
+          "extrication tools"
+        ],
+        "location": {"lat": 37.7749, "lng": -122.4194},
+        "status": "available",
+        "last_maintenance": "2025-09-15",
+        "fuel_level": 0.85
+      },
+      "FE002": {
+        "type": "Type 1 Fire Engine",
+        "water_capacity_gallons": 500,
+        "pump_capacity_gpm": 1500,
+        "crew_capacity": 6,
+        "equipment": [
+          "1500 ft attack hose",
+          "200 ft supply hose",
+          "ground ladders", 
+          "SCBA equipment",
+          "medical supplies",
+          "foam system"
+        ],
+        "location": {"lat": 37.7849, "lng": -122.4094},
+        "status": "available",
+        "last_maintenance": "2025-09-20",
+        "fuel_level": 0.92
+      },
+      "FE003": {
+        "type": "Type 2 Fire Engine",
+        "water_capacity_gallons": 300,
+        "pump_capacity_gpm": 1000,
+        "crew_capacity": 4,
+        "equipment": [
+          "1000 ft attack hose",
+          "150 ft supply hose",
+          "ground ladders",
+          "SCBA equipment",
+          "wildland tools"
+        ],
+        "location": {"lat": 37.7649, "lng": -122.4294},
+        "status": "deployed",
+        "last_maintenance": "2025-09-10",
+        "fuel_level": 0.45
+      }
+    },
+    "ambulances": {
+      "AMB001": {
+        "type": "Type 1 Ambulance",
+        "patient_capacity": 2,
+        "crew_capacity": 3,
+        "equipment": [
+          "cardiac_monitor",
+          "defibrillator", 
+          "ventilator",
+          "IV_supplies",
+          "trauma_kit",
+          "spinal_immobilization",
+          "oxygen_system"
+        ],
+        "location": {"lat": 37.7749, "lng": -122.4194},
+        "status": "available",
+        "last_maintenance": "2025-09-25",
+        "fuel_level": 0.78
+      },
+      "AMB002": {
+        "type": "Type 1 Ambulance",
+        "patient_capacity": 2,
+        "crew_capacity": 3,
+        "equipment": [
+          "cardiac_monitor",
+          "defibrillator",
+          "ventilator", 
+          "IV_supplies",
+          "trauma_kit",
+          "pediatric_equipment"
+        ],
+        "location": {"lat": 37.7849, "lng": -122.4094},
+        "status": "available",
+        "last_maintenance": "2025-09-18",
+        "fuel_level": 0.67
+      },
+      "AMB003": {
+        "type": "Type 2 Ambulance",
+        "patient_capacity": 1,
+        "crew_capacity": 2,
+        "equipment": [
+          "basic_cardiac_monitor",
+          "AED",
+          "BVM",
+          "basic_trauma_supplies",
+          "oxygen_system"
+        ],
+        "location": {"lat": 37.7649, "lng": -122.4294},
+        "status": "maintenance",
+        "last_maintenance": "2025-10-01",
+        "fuel_level": 0.0
+      },
+      "AMB004": {
+        "type": "Mobile ICU",
+        "patient_capacity": 1,
+        "crew_capacity": 4,
+        "equipment": [
+          "advanced_cardiac_monitor",
+          "ventilator",
+          "ECMO_capability",
+          "blood_products",
+          "surgical_supplies",
+          "critical_care_medications"
+        ],
+        "location": {"lat": 37.7550, "lng": -122.4400},
+        "status": "available",
+        "last_maintenance": "2025-09-28",
+        "fuel_level": 0.89
+      }
+    },
+    "police_vehicles": {
+      "PU001": {
+        "type": "Patrol Car",
+        "crew_capacity": 2,
+        "equipment": [
+          "mobile_data_terminal",
+          "radio_system",
+          "emergency_lighting",
+          "traffic_control_equipment",
+          "first_aid_kit"
+        ],
+        "location": {"lat": 37.7749, "lng": -122.4194},
+        "status": "available",
+        "last_maintenance": "2025-09-22",
+        "fuel_level": 0.73
+      },
+      "PU002": {
+        "type": "Patrol Car", 
+        "crew_capacity": 2,
+        "equipment": [
+          "mobile_data_terminal",
+          "radio_system",
+          "emergency_lighting",
+          "spike_strips",
+          "crowd_control_barriers"
+        ],
+        "location": {"lat": 37.7849, "lng": -122.4094},
+        "status": "available",
+        "last_maintenance": "2025-09-19",
+        "fuel_level": 0.81
+      },
+      "PU003": {
+        "type": "SUV Patrol",
+        "crew_capacity": 4,
+        "equipment": [
+          "mobile_data_terminal",
+          "radio_system", 
+          "emergency_lighting",
+          "K9_transport_area",
+          "additional_equipment_storage"
+        ],
+        "location": {"lat": 37.7649, "lng": -122.4294},
+        "status": "available",
+        "last_maintenance": "2025-09-16",
+        "fuel_level": 0.55
+      },
+      "PU004": {
+        "type": "Motorcycle",
+        "crew_capacity": 1,
+        "equipment": [
+          "radio_system",
+          "emergency_lighting",
+          "traffic_enforcement_equipment", 
+          "first_aid_kit"
+        ],
+        "location": {"lat": 37.7550, "lng": -122.4400},
+        "status": "deployed",
+        "last_maintenance": "2025-09-12",
+        "fuel_level": 0.34
+      }
+    },
+    "rescue_vehicles": {
+      "RV001": {
+        "type": "Heavy Rescue",
+        "crew_capacity": 8,
+        "equipment": [
+          "hydraulic_rescue_tools",
+          "cutting_torches",
+          "lifting_equipment",
+          "rope_rescue_gear",
+          "confined_space_equipment",
+          "air_monitoring_devices",
+          "generator_and_lighting"
+        ],
+        "location": {"lat": 37.7749, "lng": -122.4194},
+        "status": "available",
+        "last_maintenance": "2025-09-24",
+        "fuel_level": 0.91
+      },
+      "RV002": {
+        "type": "Technical Rescue",
+        "crew_capacity": 6,
+        "equipment": [
+          "search_cameras",
+          "listening_devices",
+          "pneumatic_tools",
+          "shoring_equipment",
+          "victim_location_devices",
+          "medical_equipment"
+        ],
+        "location": {"lat": 37.7849, "lng": -122.4094},
+        "status": "available", 
+        "last_maintenance": "2025-09-17",
+        "fuel_level": 0.76
+      }
+    },
+    "hazmat_vehicles": {
+      "HZ001": {
+        "type": "Hazmat Response Unit",
+        "crew_capacity": 4,
+        "equipment": [
+          "chemical_detection_equipment",
+          "hazmat_suits_level_A",
+          "hazmat_suits_level_B",
+          "decontamination_supplies",
+          "air_monitoring_equipment",
+          "chemical_reference_materials",
+          "containment_equipment"
+        ],
+        "location": {"lat": 37.7749, "lng": -122.4194},
+        "status": "available",
+        "last_maintenance": "2025-09-26",
+        "fuel_level": 0.83
+      }
+    },
+    "command_vehicles": {
+      "CMD001": {
+        "type": "Mobile Command Post",
+        "crew_capacity": 8,
+        "equipment": [
+          "communication_systems",
+          "computer_workstations",
+          "mapping_software",
+          "video_conferencing",
+          "emergency_power_system",
+          "satellite_communications"
+        ],
+        "location": {"lat": 37.7749, "lng": -122.4194},
+        "status": "available",
+        "last_maintenance": "2025-09-21",
+        "fuel_level": 0.94
+      }
+    },
+    "utility_vehicles": {
+      "UV001": {
+        "type": "Bucket Truck",
+        "crew_capacity": 3,
+        "max_height_feet": 60,
+        "equipment": [
+          "electrical_repair_tools",
+          "safety_equipment",
+          "material_handling_equipment",
+          "emergency_lighting"
+        ],
+        "location": {"lat": 37.7749, "lng": -122.4194},
+        "status": "available",
+        "last_maintenance": "2025-09-14",
+        "fuel_level": 0.69
+      },
+      "UV002": {
+        "type": "Emergency Generator Truck",
+        "crew_capacity": 2,
+        "generator_capacity_kw": 500,
+        "equipment": [
+          "portable_generators",
+          "electrical_connection_equipment",
+          "fuel_supply_system",
+          "monitoring_equipment"
+        ],
+        "location": {"lat": 37.7849, "lng": -122.4094},
+        "status": "available",
+        "last_maintenance": "2025-09-23",
+        "fuel_level": 0.87
+      }
+    }
+  },
+  "equipment": {
+    "fire_suppression": {
+      "fire_hoses": {
+        "1_75_inch_attack_line": {
+          "length_feet": 200,
+          "flow_rate_gpm": 150,
+          "pressure_rating_psi": 400,
+          "quantity": 25
+        },
+        "2_5_inch_supply_line": {
+          "length_feet": 100,
+          "flow_rate_gpm": 500,
+          "pressure_rating_psi": 300,
+          "quantity": 15
+        },
+        "5_inch_supply_line": {
+          "length_feet": 100,
+          "flow_rate_gpm": 1000,
+          "pressure_rating_psi": 185,
+          "quantity": 10
+        }
+      },
+      "foam_systems": {
+        "class_A_foam": {
+          "concentrate_gallons": 500,
+          "expansion_ratio": "7:1",
+          "application_rate": "0.1-0.5%"
+        },
+        "class_B_foam": {
+          "concentrate_gallons": 300,
+          "expansion_ratio": "3:1",
+          "application_rate": "3-6%"
+        }
+      },
+      "aerial_equipment": {
+        "100_foot_ladder": {
+          "reach_feet": 100,
+          "tip_load_pounds": 750,
+          "flow_rate_gpm": 1000,
+          "quantity": 3
+        },
+        "75_foot_ladder": {
+          "reach_feet": 75,
+          "tip_load_pounds": 750,
+          "flow_rate_gpm": 1000,
+          "quantity": 2
+        }
+      }
+    },
+    "medical_equipment": {
+      "life_support": {
+        "cardiac_monitors": {
+          "12_lead_capability": true,
+          "defibrillation_capability": true,
+          "pacing_capability": true,
+          "quantity": 8
+        },
+        "ventilators": {
+          "portable_ventilators": {
+            "battery_life_hours": 8,
+            "modes": ["volume", "pressure", "CPAP"],
+            "quantity": 6
+          }
+        },
+        "iv_pumps": {
+          "multi_channel_pumps": {
+            "channels": 4,
+            "battery_life_hours": 6,
+            "quantity": 12
+          }
+        }
+      },
+      "trauma_equipment": {
+        "spine_boards": {
+          "adult_boards": 15,
+          "pediatric_boards": 5
+        },
+        "cervical_collars": {
+          "adjustable_adult": 20,
+          "pediatric_set": 10
+        },
+        "vacuum_splints": {
+          "full_body": 8,
+          "extremity_set": 12
+        }
+      },
+      "airway_management": {
+        "advanced_airways": {
+          "endotracheal_tubes": "complete_set",
+          "supraglottic_airways": 25,
+          "surgical_airways": 5
+        },
+        "oxygen_delivery": {
+          "portable_oxygen_tanks": 50,
+          "oxygen_concentrators": 8,
+          "bag_valve_masks": 30
+        }
+      }
+    },
+    "rescue_equipment": {
+      "hydraulic_tools": {
+        "spreaders": {
+          "opening_force_tons": 12,
+          "opening_distance_inches": 32,
+          "quantity": 4
+        },
+        "cutters": {
+          "cutting_force_tons": 63,
+          "blade_opening_inches": 7,
+          "quantity": 4
+        },
+        "rams": {
+          "extension_force_tons": 10,
+          "stroke_length_inches": 20,
+          "quantity": 6
+        }
+      },
+      "rope_rescue": {
+        "dynamic_rope": {
+          "diameter_mm": 11,
+          "length_meters": 200,
+          "strength_kn": 35,
+          "quantity": 8
+        },
+        "static_rope": {
+          "diameter_mm": 11,
+          "length_meters": 200,
+          "strength_kn": 40,
+          "quantity": 6
+        },
+        "hardware": {
+          "carabiners": 100,
+          "pulleys": 20,
+          "anchoring_devices": 50
+        }
+      },
+      "confined_space": {
+        "tripods": {
+          "height_adjustable": true,
+          "working_load_limit_pounds": 2000,
+          "quantity": 4
+        },
+        "winches": {
+          "capacity_pounds": 2000,
+          "cable_length_feet": 100,
+          "quantity": 6
+        },
+        "ventilation": {
+          "exhaust_fans": 8,
+          "supply_fans": 6,
+          "ductwork_feet": 500
+        }
+      }
+    },
+    "hazmat_equipment": {
+      "detection": {
+        "multi_gas_meters": {
+          "gases_detected": ["LEL", "O2", "CO", "H2S"],
+          "data_logging": true,
+          "quantity": 12
+        },
+        "chemical_identification": {
+          "ftir_spectrometer": 2,
+          "raman_spectrometer": 1,
+          "colorimetric_tubes": "complete_set"
+        },
+        "radiation_detection": {
+          "survey_meters": 4,
+          "dosimeters": 20,
+          "portal_monitors": 2
+        }
+      },
+      "protection": {
+        "level_a_suits": {
+          "encapsulated_suits": 8,
+          "supplied_air": true,
+          "chemical_resistant": true
+        },
+        "level_b_suits": {
+          "hooded_suits": 12,
+          "supplied_air": true,
+          "chemical_resistant": true
+        },
+        "level_c_suits": {
+          "hooded_suits": 20,
+          "air_purifying": true,
+          "chemical_resistant": true
+        }
+      },
+      "decontamination": {
+        "wash_stations": {
+          "portable_stations": 4,
+          "water_capacity_gallons": 100,
+          "heating_capability": true
+        },
+        "decon_solutions": {
+          "household_bleach_gallons": 50,
+          "dish_soap_gallons": 25,
+          "specialized_solutions": "various"
+        }
+      }
+    },
+    "communication": {
+      "radio_systems": {
+        "portable_radios": {
+          "uhf_radios": 50,
+          "vhf_radios": 30,
+          "800_mhz_radios": 25
+        },
+        "mobile_radios": {
+          "vehicle_mounted": 25,
+          "base_stations": 8,
+          "repeaters": 12
+        }
+      },
+      "data_systems": {
+        "mobile_data_terminals": 20,
+        "laptop_computers": 15,
+        "tablet_computers": 25,
+        "satellite_phones": 8
+      }
+    }
+  },
+  "facilities": {
+    "hospitals": {
+      "metro_general_hospital": {
+        "location": {"lat": 37.7749, "lng": -122.4194},
+        "trauma_level": 1,
+        "bed_capacity": 500,
+        "emergency_beds": 50,
+        "icu_beds": 80,
+        "helicopter_pad": true,
+        "specialties": [
+          "trauma_surgery",
+          "cardiac_surgery", 
+          "neurosurgery",
+          "burn_center",
+          "pediatric_emergency"
+        ],
+        "mass_casualty_capacity": 200,
+        "contact": "+1-555-METRO-HOSP"
+      },
+      "regional_medical_center": {
+        "location": {"lat": 37.7849, "lng": -122.4094},
+        "trauma_level": 2,
+        "bed_capacity": 300,
+        "emergency_beds": 30,
+        "icu_beds": 40,
+        "helicopter_pad": false,
+        "specialties": [
+          "general_surgery",
+          "internal_medicine",
+          "orthopedics"
+        ],
+        "mass_casualty_capacity": 100,
+        "contact": "+1-555-REGIONAL-MED"
+      }
+    },
+    "emergency_shelters": {
+      "community_center_main": {
+        "location": {"lat": 37.7749, "lng": -122.4194},
+        "capacity": 500,
+        "facilities": [
+          "kitchen",
+          "restrooms",
+          "medical_station",
+          "communication_center"
+        ],
+        "backup_power": true,
+        "pet_friendly": true
+      },
+      "high_school_gymnasium": {
+        "location": {"lat": 37.7849, "lng": -122.4094},
+        "capacity": 300,
+        "facilities": [
+          "restrooms",
+          "medical_station"
+        ],
+        "backup_power": false,
+        "pet_friendly": false
+      }
+    },
+    "supply_depots": {
+      "emergency_supplies_warehouse": {
+        "location": {"lat": 37.7649, "lng": -122.4294},
+        "supplies": {
+          "water_gallons": 10000,
+          "mre_meals": 5000,
+          "blankets": 2000,
+          "cots": 1000,
+          "medical_supplies": "basic_kit_x100",
+          "generators": 20,
+          "fuel_gallons": 5000
+        }
+      }
+    }
+  },
+  "resource_availability": {
+    "current_status": {
+      "vehicles_available": 85,
+      "vehicles_deployed": 12,
+      "vehicles_maintenance": 5,
+      "personnel_on_duty": 180,
+      "personnel_off_duty": 95,
+      "critical_equipment_operational": 98,
+      "last_updated": "2025-10-02T10:00:00Z"
+    },
+    "peak_capacity": {
+      "max_simultaneous_incidents": 8,
+      "max_personnel_deployable": 200,
+      "max_vehicles_deployable": 75,
+      "sustained_operations_hours": 12
+    }
+  }
+}
